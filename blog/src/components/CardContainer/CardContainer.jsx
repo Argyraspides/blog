@@ -11,7 +11,7 @@ const CardContainer = ({ blogCards }) => {
                 {blogCards.map((blogCard, index) => (
 
                     <BlogCard
-                        key={index}
+                        key={blogCard._id}
                         title={blogCard.title}
                         coverImageSource={blogCard.coverImageSource}
                         date={blogCard.publicationDate}

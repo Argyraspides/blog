@@ -59,7 +59,7 @@ export const getAllBlogPostsInfo = async (req, res) => {
 
         // Only grab blog post info needed to display a blog card (title, author, publication date, cover image source URL)
         const blogPostsFilter =
-            "-_id " + BlogPostFieldNames.publicationDate + " " + BlogPostFieldNames.title + " " + BlogPostFieldNames.author + " " + BlogPostFieldNames.coverImageSource;
+            BlogPostFieldNames.publicationDate + " " + BlogPostFieldNames.title + " " + BlogPostFieldNames.author + " " + BlogPostFieldNames.coverImageSource;
         const blogPostsInfo = await BlogPost.find()
             .select(blogPostsFilter)
             .skip(skip)
