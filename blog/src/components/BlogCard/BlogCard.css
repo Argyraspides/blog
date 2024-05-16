@@ -1,0 +1,34 @@
+.blogcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.blogcard-background {
+    width: 200px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+.blogcard-title {
+    color: white;
+}
+
+.blogcard-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 75px;
+}
+
+.blogcard-date {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.blogcard-author {
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
