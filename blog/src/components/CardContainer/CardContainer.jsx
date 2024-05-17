@@ -12,6 +12,7 @@ const CardContainer = ({ blogCards }) => {
 
                     <BlogCard
                         key={blogCard._id}
+                        _id={blogCard._id}
                         title={blogCard.title}
                         coverImageSource={blogCard.coverImageSource}
                         date={blogCard.publicationDate}

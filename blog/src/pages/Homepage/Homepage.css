@@ -1,8 +1,43 @@
 .homepage-background-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     background-color: black;
     min-height: 100vh;
     min-width: 100vw;
+}
+
+.homepage-titlebar {
+    position: absolute;
+}
+
+.homepage-search-textfield {
+    background-color: rgb(48, 48, 48);
+    border-radius: 50px;
+    width: 50%;
+}
+
+/* Material UIs random crap for hovering and outlines that I had to find bruhhh */
+.homepage-search-textfield .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: purple;
+    border-radius: 50px;
+}
+.homepage-search-textfield .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+    border-color: purple;
+    border-radius: 50px;
+}
+.homepage-search-textfield input {
+    color: #ffffff;
+}
+.homepage-searchicon {
+    color: white;
+}
+
+.homepage-search-inputadornment {
+    color: #e7e7e7;
+}
+
+.homepage-addblogbutton {
+    position: absolute;
+    right: 10px;
+    top: 15px;
 }

@@ -1,0 +1,14 @@
+.addblogbutton {
+    width: 100px;
+    height: 35px;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 50px;
+    border: 0px;
+}
+
+.addblogbutton:hover {
+    background-color: #7a007a;
+    color: white;
+    transition: 0.3s ease;
+}

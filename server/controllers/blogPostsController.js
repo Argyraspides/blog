@@ -59,7 +59,7 @@ export const getAllBlogPostsInfo = async (req, res) => {
 
         // Only grab blog post info needed to display a blog card (title, author, publication date, cover image source URL)
         const blogPostsFilter =
-            BlogPostFieldNames.publicationDate + " " + BlogPostFieldNames.title + " " + BlogPostFieldNames.author + " " + BlogPostFieldNames.coverImageSource;
+            "_id " + BlogPostFieldNames.publicationDate + " " + BlogPostFieldNames.title + " " + BlogPostFieldNames.author + " " + BlogPostFieldNames.coverImageSource;
         const blogPostsInfo = await BlogPost.find()
             .select(blogPostsFilter)
             .skip(skip)
@@ -78,4 +78,55 @@ export const getAllBlogPostsInfo = async (req, res) => {
         res.status(500).json({msg: "Failed to fetch blog posts", error: error})
     }
 
+}
+
+export const getBlogPostById = async (req, res) => {
+    LogRequest(req.params, "getAllBlogPostsInfo (queryparameter)")
+
+    try {
+        const blogPost = await BlogPost.findById(req.params.id)
+
+        // Perhaps not the best way to do things.
+        // TODO CLEAN UP. When creating a MD editor, this might not be necessary anymore
+        const rawMarkdown = blogPost.textContent.replace(/\\\\n/g, '\n').replace(/\\\\#/g, '#');
+        blogPost.textContent = rawMarkdown
+
+        if(!blogPost) {
+            res.status(404).json({msg: "Could not find blog post with ID " + req.params.id})
+        }
+
+        res.json(blogPost)
+
+    } catch(error) {
+        LogError(error, "getBlogPostById")
+        res.status(500).json({msg: "Failed to fetch blog post by Id", error: error})
+    }
+
+}
+
+export const getBlogPostsByName = async (req, res) => {
+    LogRequest(req.params, "getBlogPostByName (queryparameter)")
+
+    try {
+        const searchString = req.params.name; 
+        const regex = new RegExp(searchString, 'i');
+
+        const query = {
+            $or: [
+                { title: { $regex: regex } }, 
+                { author: { $regex: regex } } 
+            ]
+        };
+
+        const blogPostsFilter =
+            "_id " + BlogPostFieldNames.publicationDate + " " + BlogPostFieldNames.title + " " + BlogPostFieldNames.author + " " + BlogPostFieldNames.coverImageSource;
+        const blogPostsInfo = await BlogPost.find(query)
+            .select(blogPostsFilter)
+            .exec();
+
+        res.status(200).json(blogPostsInfo);
+    } catch(error) {
+        LogError(error, "getBlogPostsByName")
+        res.status(500).json({msg: "Failed to fetch blog posts by name", error: error})
+    }
 }

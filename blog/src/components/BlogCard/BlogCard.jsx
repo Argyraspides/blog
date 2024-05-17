@@ -1,14 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
 import {formatDate} from "../../utils/dateFormatter.js"
 import './BlogCard.css'
+import { useState } from 'react'
 
 
-const BlogCard = ({ title, author, coverImageSource, date }) => {
+const BlogCard = ({ title, author, coverImageSource, date, _id }) => {
 
+    const [blogPostId, setBlogPostId] = useState(``)
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("/blog")
+        navigate(`/blogPost/${_id}`)
     }
 
     const formattedDate = formatDate(date);
