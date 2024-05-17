@@ -4,12 +4,16 @@ import remarkGfm from 'remark-gfm';
 import Titlebar from '../Titlebar/Titlebar';
 import { formatDate } from '../../utils/dateFormatter';
 import BackArrowButton from '../BackArrowButton/BackArrowButton';
+import { useEffect, useState } from 'react';
 
 
 const BlogContent = ({ _id, publicationDate, lastEditedDate, title, author, coverImageSource, textContent, imageContentSources }) => {
 
     const pubDateFormatted = formatDate(publicationDate)
     const editDateFormatted = formatDate(lastEditedDate)
+   
+   
+
 
     return (
         <>
