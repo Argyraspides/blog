@@ -10,6 +10,9 @@ const EditorPage = () => {
 
     const load = localStorage.getItem('markdownContent');
     const [value, setValue] = useState(!load ? "Molon Labe" : load);
+    
+    const [title, setTitle] = useState("");
+    const [authorName, setAuthorName] = useState("");
 
     useEffect(() => {
         if (load) { setValue(load) }
@@ -21,6 +24,24 @@ const EditorPage = () => {
 
     return (
         <div className="editorpage-background">
+
+            <div className="editorpage-title-section">
+                <input
+                    type="text"
+                    placeholder="Title"
+                    className="editorpage-title-input"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="editorpage-author-input"
+                    value={authorName}
+                    onChange={(e) => setAuthorName(e.target.value)}
+                />
+            </div>
+
             <div className="editorpage-container">
                 <MDEditor
                     value={value}

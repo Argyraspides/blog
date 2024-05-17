@@ -37,3 +37,19 @@
     align-items: center; 
     padding: 10px 20px; 
 }
+
+.editorpage-title-section {
+    width: 80%;
+    border: none;
+    display: flex;
+}
+
+.editorpage-title-input, .editorpage-author-input {
+    color: white;
+    padding: 12px ; 
+    margin-bottom: 5px;
+    border: 1px solid purple;
+    border-radius: 4px;
+    font-size: 1.2em;  
+    background-color: #1f1f1f;
+}
