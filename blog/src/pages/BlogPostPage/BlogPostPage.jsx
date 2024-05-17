@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import { getBlogPostById } from '../../apiCalling/apis/apis';
 import BlogContent from '../../components/BlogContent/BlogContent'
 import Titlebar from '../../components/Titlebar/Titlebar';
+import LoadingPage from '../LoadingPage/LoadingPage';
 
 const BlogPostPage = () => {
 
     const { blogPostId } = useParams();
+    const [isLoading, setIsLoading] = useState(false)
     const [blogPostContent, setBlogPostContent] = useState({})
 
     useEffect(() => {
@@ -17,28 +19,35 @@ const BlogPostPage = () => {
         try {
 
             const fetchBlogPostById = async () => {
+                setIsLoading(true)
                 const resp = await getBlogPostById(blogPostId);
                 if (!resp) {
                     console.log("Response for getBlogPostById in BlogContent.jsx is null")
                 } else {
-                    
                     setBlogPostContent(resp);
                     console.log(resp);
-
+                    setIsLoading(false);
                 }
             }
             fetchBlogPostById();
 
         } catch (error) {
             console.log("Error in fetching blog post by Id in BlogPostPage component")
-            console.log(error)
+            console.log(error);
+            setIsLoading(false);
         }
 
     }, [])
 
+    if(isLoading) {
+        return (
+            <LoadingPage></LoadingPage>
+        );
+    }
+
     return (
         <div className="blogpostpage-container">
-            
+
             {blogPostContent && <BlogContent
                 _id={blogPostContent._id}
                 publicationDate={blogPostContent.publicationDate}

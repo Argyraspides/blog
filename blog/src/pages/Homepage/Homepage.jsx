@@ -6,28 +6,31 @@ import { getAllBlogPostsInfo, getBlogPostsByName } from "../../apiCalling/apis/a
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
+import LoadingPage   from "../LoadingPage/LoadingPage";
 
 import './Homepage.css';
 import AddBlogButton from "../../components/AddBlogButton/AddBlogButton";
 
-
-
 const Homepage = () => {
 
-    const [blogCards, setBlogCards] = useState([])
-    const [dailyTitle, setDailyTitle] = useState('Look on my works, ye Mighty, and Despair!')
-    const [searchBarText, setSearchBarText] = useState('')
+    const [blogCards, setBlogCards] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [dailyTitle, setDailyTitle] = useState('Look on my works, ye Mighty, and Despair!');
+    const [searchBarText, setSearchBarText] = useState('');
 
     // Update the title with all blog posts
     useEffect(() => {
 
         const fetchData = async () => {
             try {
+                setIsLoading(true);
                 const data = await getAllBlogPostsInfo();
                 setBlogCards(data);
+                setIsLoading(false);
             } catch (error) {
                 console.log("Error fetching all blog posts information");
                 console.log(error);
+                setIsLoading(false);
             }
         };
 
@@ -57,6 +60,12 @@ const Homepage = () => {
 
     const handleSearchInputChange = (event) => {
         setSearchBarText(event.target.value)
+    }
+
+    if(isLoading) {
+        return (
+            <LoadingPage></LoadingPage>
+        );
     }
 
     return (

@@ -11,9 +11,6 @@ const BlogContent = ({ _id, publicationDate, lastEditedDate, title, author, cove
 
     const pubDateFormatted = formatDate(publicationDate)
     const editDateFormatted = formatDate(lastEditedDate)
-   
-   
-
 
     return (
         <>
