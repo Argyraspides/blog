@@ -8,7 +8,16 @@ import BackArrowButton from "../../components/BackArrowButton/BackArrowButton";
 
 const EditorPage = () => {
 
-    const [value, setValue] = useState("Molon Labe");
+    const load = localStorage.getItem('markdownContent');
+    const [value, setValue] = useState(!load ? "Molon Labe" : load);
+
+    useEffect(() => {
+        if (load) { setValue(load) }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('markdownContent', value);
+    }, [value])
 
     return (
         <div className="editorpage-background">
