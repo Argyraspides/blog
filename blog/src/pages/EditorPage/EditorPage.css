@@ -43,13 +43,13 @@
     width: 80%;
     display: flex;
     gap: 10px;
-
 }
 
 .editorpage-title-input,
 .editorpage-author-input {
     color: white;
     padding: 10px;
+    padding-left: 10px;
     margin-bottom: 5px;
     border: none;
     border-radius: 20px;

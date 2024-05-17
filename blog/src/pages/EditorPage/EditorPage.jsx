@@ -8,19 +8,23 @@ import BackArrowButton from "../../components/BackArrowButton/BackArrowButton";
 
 const EditorPage = () => {
 
-    const load = localStorage.getItem('markdownContent');
-    const [value, setValue] = useState(!load ? "Molon Labe" : load);
-    
-    const [title, setTitle] = useState("");
-    const [authorName, setAuthorName] = useState("");
+    const [value, setValue] = useState(localStorage.getItem('markdownContent') || "Molon Labe");
+    const [title, setTitle] = useState(localStorage.getItem('markdownContent-title') || "Come, take!");
+    const [authorName, setAuthorName] = useState(localStorage.getItem('markdownContent-author') || "Leonidas I");
 
     useEffect(() => {
-        if (load) { setValue(load) }
-    }, [])
-
-    useEffect(() => {
+        // This effect only runs once on initial load to set initial values from local storage
         localStorage.setItem('markdownContent', value);
-    }, [value])
+        localStorage.setItem('markdownContent-title', title);
+        localStorage.setItem('markdownContent-author', authorName);
+    }, []); 
+
+    useEffect(() => {
+        // This effect runs whenever value, title, or authorName change
+        localStorage.setItem('markdownContent', value);
+        localStorage.setItem('markdownContent-title', title);
+        localStorage.setItem('markdownContent-author', authorName); 
+    }, [value, title, authorName]); 
 
     return (
         <div className="editorpage-background">
