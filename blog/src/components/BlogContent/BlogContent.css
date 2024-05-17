@@ -8,6 +8,12 @@
     align-items: center;
 }
 
+.blogcontent-topbar {
+    width: 100%;
+    position: relative;
+}
+
+
 .blogcontent-heading-container {
     width: 100%;
 }
@@ -31,7 +37,7 @@
     max-width: 50%;
 }
 
-.blogcontent-slarrowleft {
+.blogcontent-backarrowbutton {
     left: 20px;
     top: 16.25px;
     position: absolute;
@@ -40,6 +46,7 @@
     cursor: pointer;
 }
 
-.blogcontent-slarrowleft:hover {
+.blogcontent-backarrowbutton:hover {
+    transition: 0.3s ease;
     color: purple;
 }

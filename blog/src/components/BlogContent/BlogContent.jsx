@@ -2,17 +2,11 @@ import './BlogContent.css'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm';
 import Titlebar from '../Titlebar/Titlebar';
-import { SlArrowLeft } from "react-icons/sl";
-import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../utils/dateFormatter';
+import BackArrowButton from '../BackArrowButton/BackArrowButton';
 
 
 const BlogContent = ({ _id, publicationDate, lastEditedDate, title, author, coverImageSource, textContent, imageContentSources }) => {
-
-    const navigate = useNavigate()
-    const handleBackClick = () => {
-        navigate("../")
-    }
 
     const pubDateFormatted = formatDate(publicationDate)
     const editDateFormatted = formatDate(lastEditedDate)
@@ -21,12 +15,9 @@ const BlogContent = ({ _id, publicationDate, lastEditedDate, title, author, cove
         <>
             <div className="blogcontent-container">
 
-
-                <SlArrowLeft className="blogcontent-slarrowleft" onClick={handleBackClick}></SlArrowLeft>
-
-
                 <Titlebar text={title}>
                 </Titlebar>
+                <BackArrowButton className={"blogcontent-backarrowbutton"}></BackArrowButton>
 
                 <div className="blogcontent-heading-container">
 
@@ -37,7 +28,7 @@ const BlogContent = ({ _id, publicationDate, lastEditedDate, title, author, cove
                     <h3 className="blogcontent-lastediteddate">
                         {editDateFormatted == pubDateFormatted ? "" : "Last Edited: " + editDateFormatted}
                     </h3>
-                    
+
                     <img src={coverImageSource} className="blogcontent-heading-image"></img>
                 </div>
 
