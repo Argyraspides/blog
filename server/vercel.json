@@ -6,9 +6,10 @@
             "use": "@vercel/node"
         }
     ],
-    "headers": [
+    "rewrites": [
         {
             "source": "/(.*)",
+            "destination": "server.js",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Origin",
@@ -23,12 +24,6 @@
                     "value": "Content-Type, Authorization"
                 }
             ]
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "server.js"
         }
     ]
 }
