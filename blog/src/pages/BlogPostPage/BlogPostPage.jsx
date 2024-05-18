@@ -39,7 +39,7 @@ const BlogPostPage = () => {
 
     }, [])
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <LoadingPage></LoadingPage>
         );

@@ -2,6 +2,7 @@ import Titlebar from "../../components/Titlebar/Titlebar";
 import CardContainer from "../../components/CardContainer/CardContainer";
 import { useEffect, useState } from "react";
 import { getAllBlogPostsInfo, getBlogPostsByName, getDailyQuote } from "../../apiCalling/apis/apis";
+import { IoMdArrowBack } from "react-icons/io";
 
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
@@ -17,6 +18,8 @@ const Homepage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [dailyTitle, setDailyTitle] = useState('');
     const [searchBarText, setSearchBarText] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentItemsPerPage, setCurrentItemsPerPage] = useState(10);
 
     // Update the title with all blog posts
     useEffect(() => {
@@ -24,7 +27,7 @@ const Homepage = () => {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const data = await getAllBlogPostsInfo();
+                const data = await getAllBlogPostsInfo(currentPage, currentItemsPerPage);
                 setBlogCards(data);
                 setIsLoading(false);
             } catch (error) {
@@ -108,6 +111,7 @@ const Homepage = () => {
                     />
                 </div>
                 <CardContainer blogCards={blogCards}></CardContainer>
+                <IoMdArrowBack></IoMdArrowBack>
             </div>
         </div>
     )

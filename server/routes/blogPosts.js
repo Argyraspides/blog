@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/blogPostsTest", testBlogPostsBaseRoute);
 router.post("/createBlog", createBlogPost);
-router.get("/getAllBlogPostsInfo", getAllBlogPostsInfo);
+router.get("/getAllBlogPostsInfo/:page/:pageSize", getAllBlogPostsInfo);
 router.get("/getBlogPostById/:id", getBlogPostById);
 router.get("/getBlogPostsByName/:name", getBlogPostsByName);
 

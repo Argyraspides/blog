@@ -1,6 +1,8 @@
 .titlebar-h1 {
     color: white;
     font-weight: 400;
+    font-size: x-large;
+    width: 70%;
 }
 
 .titlebar-background {
