@@ -1,7 +1,7 @@
 import Titlebar from "../../components/Titlebar/Titlebar";
 import CardContainer from "../../components/CardContainer/CardContainer";
 import { useEffect, useState } from "react";
-import { getAllBlogPostsInfo, getBlogPostsByName } from "../../apiCalling/apis/apis";
+import { getAllBlogPostsInfo, getBlogPostsByName, getDailyQuote } from "../../apiCalling/apis/apis";
 
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,33 +12,6 @@ import './Homepage.css';
 import AddBlogButton from "../../components/AddBlogButton/AddBlogButton";
 
 const Homepage = () => {
-
-    // TODO MAKE THE DAILY TITLE SERVER-SIDE DETERMINED
-    const historicalExcerpts = [
-        "Look on my works, ye Mighty, and Despair!", // Ozymandias (Shelley)
-        "Veni, vidi, vici.", // Julius Caesar
-        "The die is cast.", // Julius Caesar
-        "Give me liberty, or give me death!", // Patrick Henry
-        "Let them eat cake.", // Marie Antoinette (disputed)
-        "Et tu, Brute?", // Julius Caesar
-        "We hold these truths to be self-evident...", // Declaration of Independence
-        "Four score and seven years ago...", // Gettysburg Address
-        "Government of the people, by the people, for the people...", // Gettysburg Address
-        "Never was so much owed by so many to so few.", // Winston Churchill
-        "This was their finest hour.", // Winston Churchill
-        "We shall fight on the beaches...", // Winston Churchill
-        "I have a dream...", // Martin Luther King Jr.
-        "Ask not what your country can do for you...", // John F. Kennedy
-        "Ich bin ein Berliner.", // John F. Kennedy
-        "That's one small step for man...", // Neil Armstrong
-        "An unexamined life is not worth living.", // Socrates
-        "Know thyself.", // Ancient Greek aphorism
-        "Eureka!", // Archimedes
-        "Carthago delenda est.", // Cato the Elder
-        "Alea iacta est.", // Julius Caesar
-        "Acta non verba.", // Latin proverb
-        "Cogito, ergo sum.", // René Descartes
-      ];
 
     const [blogCards, setBlogCards] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -85,10 +58,19 @@ const Homepage = () => {
         }
     }, [searchBarText])
 
-    // TODO MAKE THE DAILY TITLE SERVER-SIDE DETERMINED
     useEffect(() => {
-        const randomIndex = Math.floor(Math.random() * historicalExcerpts.length);
-        setDailyTitle(historicalExcerpts[randomIndex]);
+        const fetchData = async () => {
+            try {
+                const dailyQuote = await getDailyQuote();
+                // TODO dont really like how you just have to know theres a 'quote' field. Just return the quote straight up, please
+                console.log(dailyQuote)
+                setDailyTitle(dailyQuote);
+            } catch (error) {
+                console.log("Error fetching daily quote");
+                console.log(error);
+            }
+        }
+        fetchData();
     }, [])
 
     const handleSearchInputChange = (event) => {

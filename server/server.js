@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import blogRoutes from "../server/routes/blogPosts.js"
+import dailyQuotesRoutes from "../server/routes/dailyQuotes.js"
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -16,6 +17,7 @@ app.use("/test", async (req, res) => {
 });
 
 app.use("/api/blogs", blogRoutes)
+app.use("/api/dailyQuotes", dailyQuotesRoutes)
 
 // Connect to MongoDB via Mongoose
 mongoose.connect(process.env.ATLAS_URI)

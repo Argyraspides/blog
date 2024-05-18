@@ -63,3 +63,16 @@ export const postBlog = async ({ publicationDate, lastEditedDate, title, author,
             console.log(error)
         }
 }
+
+export const getDailyQuote = async () => {
+    try {
+        const apiUrl = import.meta.env.VITE_API_ROUTE_GET_DAILY_QUOTE;
+        const response = await axios.get(apiUrl);
+        return response.data.quote;
+    } catch (error) {
+        console.log("Error fetching daily quote")
+        console.log(error)
+    }
+}
+
+

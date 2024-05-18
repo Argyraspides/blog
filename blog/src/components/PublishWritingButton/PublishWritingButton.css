@@ -9,6 +9,8 @@
 
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
+    transition: 0.5s ease;
+
 }
 
 .publishwritingbutton:hover {
