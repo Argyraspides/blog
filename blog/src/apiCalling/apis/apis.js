@@ -2,7 +2,7 @@ import { title } from '@uiw/react-md-editor';
 import axios from 'axios'
 import { BlogPostFieldNames } from '../../../../server/models/blogPostModel';
 
-export const getAllBlogPostsInfo = async ({pageNumber, itemsPerPage}) => {
+export const getAllBlogPostsInfo = async (pageNumber, itemsPerPage) => {
     try {
         const apiUrl = import.meta.env.VITE_API_ROUTE_GET_ALL_BLOGPOSTS_INFO + `/${pageNumber}/${itemsPerPage}`;
         const response = await axios.get(apiUrl);

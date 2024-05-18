@@ -21,13 +21,16 @@
     border-color: purple;
     border-radius: 50px;
 }
-.homepage-search-textfield .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+
+.homepage-search-textfield .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
     border-color: purple;
     border-radius: 50px;
 }
+
 .homepage-search-textfield input {
     color: #ffffff;
 }
+
 .homepage-searchicon {
     color: white;
 }
@@ -40,4 +43,28 @@
     position: absolute;
     right: 10px;
     top: 15px;
+}
+
+.homepage-page-navigation-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    width: 100vw;
+    padding: 75px 0px 75px 0px;
+}
+
+.homepage-page-navigation-back-arrow-icon,
+.homepage-page-navigation-forward-arrow-icon {
+    width: 35px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.5s ease;
+}
+
+.homepage-page-navigation-back-arrow-icon:hover,
+.homepage-page-navigation-forward-arrow-icon:hover {
+    color: purple;
+    transition: color 0.3s ease;
 }

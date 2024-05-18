@@ -47,10 +47,12 @@ export const createBlogPost = async (req, res) => {
 
 export const getAllBlogPostsInfo = async (req, res) => {
     LogRequest(req.body, "getAllBlogPostsInfo")
+    LogRequest(req.params, "getAllBlogPostsInfo")
+    LogRequest(req.query, "getAllBlogPostsInfo")
 
     try {
-        const page = parseInt(req.query.page) || 1;
-        const pageSize = parseInt(req.query.pageSize) || 10;
+        const page = parseInt(req.params.page) || 1;
+        const pageSize = parseInt(req.params.pageSize) || 10;
         
         const totalPosts = await BlogPost.countDocuments();
         const totalPages = Math.ceil(totalPosts / pageSize);

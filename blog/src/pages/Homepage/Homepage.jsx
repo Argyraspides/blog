@@ -2,12 +2,12 @@ import Titlebar from "../../components/Titlebar/Titlebar";
 import CardContainer from "../../components/CardContainer/CardContainer";
 import { useEffect, useState } from "react";
 import { getAllBlogPostsInfo, getBlogPostsByName, getDailyQuote } from "../../apiCalling/apis/apis";
-import { IoMdArrowBack } from "react-icons/io";
+import { IoMdArrowBack, IoMdArrowForward } from "react-icons/io";
 
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
-import LoadingPage   from "../LoadingPage/LoadingPage";
+import LoadingPage from "../LoadingPage/LoadingPage";
 
 import './Homepage.css';
 import AddBlogButton from "../../components/AddBlogButton/AddBlogButton";
@@ -42,7 +42,7 @@ const Homepage = () => {
             fetchData();
         }
 
-    }, [searchBarText])
+    }, [currentPage, currentItemsPerPage])
 
     useEffect(() => {
 
@@ -66,7 +66,6 @@ const Homepage = () => {
             try {
                 const dailyQuote = await getDailyQuote();
                 // TODO dont really like how you just have to know theres a 'quote' field. Just return the quote straight up, please
-                console.log(dailyQuote)
                 setDailyTitle(dailyQuote);
             } catch (error) {
                 console.log("Error fetching daily quote");
@@ -76,11 +75,12 @@ const Homepage = () => {
         fetchData();
     }, [])
 
+
     const handleSearchInputChange = (event) => {
         setSearchBarText(event.target.value)
     }
 
-    if(isLoading) {
+    if (isLoading) {
         return (
             <LoadingPage></LoadingPage>
         );
@@ -111,7 +111,10 @@ const Homepage = () => {
                     />
                 </div>
                 <CardContainer blogCards={blogCards}></CardContainer>
-                <IoMdArrowBack></IoMdArrowBack>
+                <div className="homepage-page-navigation-buttons">
+                    <IoMdArrowBack className="homepage-page-navigation-back-arrow-icon" onClick={() => setCurrentPage(currentPage - 1 <= 0 ? currentPage : currentPage - 1)}/>
+                    <IoMdArrowForward className="homepage-page-navigation-forward-arrow-icon" onClick={() => setCurrentPage(blogCards.length < currentItemsPerPage ? currentPage : currentPage + 1)}/>
+                </div>
             </div>
         </div>
     )
