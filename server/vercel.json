@@ -6,29 +6,15 @@
             "use": "@vercel/node"
         }
     ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "server.js"
-        }
-    ],
     "headers": [
-        {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "Access-Control-Allow-Origin",
-                    "value": "https://blog-one-bice-12.vercel.app"
-                },
-                {
-                    "key": "Access-Control-Allow-Methods",
-                    "value": "GET, POST, PUT, DELETE"
-                },
-                {
-                    "key": "Access-Control-Allow-Headers",
-                    "value": "Content-Type, Authorization"
-                }
-            ]
-        }
+      {
+        "source": "/(.*)",
+        "destination": "server.js",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "https://blog-one-bice-12.vercel.app" },
+          { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE" },
+          { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+        ]
+      }
     ]
 }
