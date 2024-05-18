@@ -4,8 +4,8 @@ import MDEditor from '@uiw/react-md-editor';
 import './EditorPage.css'
 import PublishWritingButton from "../../components/PublishWritingButton/PublishWritingButton";
 import BackArrowButton from "../../components/BackArrowButton/BackArrowButton";
-
-
+import { postBlog } from "../../apiCalling/apis/apis";
+import { BlogPostFieldNames } from "../../../../server/models/blogPostModel";
 const EditorPage = () => {
 
     const [value, setValue] = useState(localStorage.getItem('markdownContent') || "Molon Labe");
@@ -13,18 +13,42 @@ const EditorPage = () => {
     const [authorName, setAuthorName] = useState(localStorage.getItem('markdownContent-author') || "Leonidas I");
 
     useEffect(() => {
-        // This effect only runs once on initial load to set initial values from local storage
         localStorage.setItem('markdownContent', value);
         localStorage.setItem('markdownContent-title', title);
         localStorage.setItem('markdownContent-author', authorName);
     }, []); 
 
     useEffect(() => {
-        // This effect runs whenever value, title, or authorName change
         localStorage.setItem('markdownContent', value);
         localStorage.setItem('markdownContent-title', title);
         localStorage.setItem('markdownContent-author', authorName); 
     }, [value, title, authorName]); 
+
+    const onPublish = () => {
+
+        const reqBody = {
+            // TODO change publication date to be taken care of server-side
+            [BlogPostFieldNames.publicationDate]: Date.now(),
+            [BlogPostFieldNames.lastEditedDate]: Date.now(),
+            [BlogPostFieldNames.title]: title,
+            [BlogPostFieldNames.author]: authorName,
+            //[BlogPostFieldNames.coverImageSource]: coverImageSource,
+            [BlogPostFieldNames.textContent]: value,
+            //[BlogPostFieldNames.imageContentSources]: imageContentSources,
+            //[BlogPostFieldNames.category]: category
+        };
+
+        try {
+            const publish = async () => {
+                const resp = await postBlog(reqBody);
+                if(resp) console.log("Posted blog successfully in EditorPage.jsx");
+                else console.log("Response from server for publishing blog was null/undefined in EditorPage.jsx");
+            }
+            publish();
+        } catch (error) {
+            console.log("Failed to publish blog at EditorPage.jsx");
+        }
+    }
 
     return (
         <div className="editorpage-background">
@@ -57,7 +81,7 @@ const EditorPage = () => {
             </div>
             <div className="editorpage-bottombar">
                 <BackArrowButton className="editorpage-backbutton"></BackArrowButton>
-                <PublishWritingButton></PublishWritingButton>
+                <PublishWritingButton buttonClickFunction={onPublish}></PublishWritingButton>
             </div>
         </div>
     );

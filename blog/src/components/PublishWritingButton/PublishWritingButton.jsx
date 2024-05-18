@@ -1,12 +1,12 @@
 import './PublishWritingButton.css'
 import { useNavigate } from 'react-router-dom'
 
-const PublishWritingButton = () => {
+const PublishWritingButton = ({buttonClickFunction}) => {
 
     const navigate = useNavigate()
 
     const handleButtonClick = () => {
-       
+       buttonClickFunction()
     }
 
     return (
