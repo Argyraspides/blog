@@ -36,3 +36,5 @@ mongoose.connect(process.env.ATLAS_URI)
   .catch((error) => {
     console.log(error)
   })
+
+export default app
