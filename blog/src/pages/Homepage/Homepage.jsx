@@ -82,7 +82,7 @@ const Homepage = () => {
 
     if (isLoading) {
         return (
-            <LoadingPage></LoadingPage>
+            <LoadingPage loadingText={"Loading homepage ..."}></LoadingPage>
         );
     }
 

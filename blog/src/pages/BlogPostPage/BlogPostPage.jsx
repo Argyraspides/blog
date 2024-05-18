@@ -41,7 +41,7 @@ const BlogPostPage = () => {
 
     if (isLoading) {
         return (
-            <LoadingPage></LoadingPage>
+            <LoadingPage loadingText={"Loading post ..."}></LoadingPage>
         );
     }
 
