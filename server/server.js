@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors());
 app.use(cors({
-  origin: 'https://blog-one-bice-12.vercel.app'
+  origin: true
 }));
 app.use(express.json());
 
