@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 5050;
 const app = express();
 
 app.use(cors());
+app.use(cors({
+  origin: 'https://blog-one-bice-12.vercel.app'
+}));
 app.use(express.json());
 
 
