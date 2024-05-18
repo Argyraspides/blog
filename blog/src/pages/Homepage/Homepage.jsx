@@ -13,9 +13,36 @@ import AddBlogButton from "../../components/AddBlogButton/AddBlogButton";
 
 const Homepage = () => {
 
+    // TODO MAKE THE DAILY TITLE SERVER-SIDE DETERMINED
+    const historicalExcerpts = [
+        "Look on my works, ye Mighty, and Despair!", // Ozymandias (Shelley)
+        "Veni, vidi, vici.", // Julius Caesar
+        "The die is cast.", // Julius Caesar
+        "Give me liberty, or give me death!", // Patrick Henry
+        "Let them eat cake.", // Marie Antoinette (disputed)
+        "Et tu, Brute?", // Julius Caesar
+        "We hold these truths to be self-evident...", // Declaration of Independence
+        "Four score and seven years ago...", // Gettysburg Address
+        "Government of the people, by the people, for the people...", // Gettysburg Address
+        "Never was so much owed by so many to so few.", // Winston Churchill
+        "This was their finest hour.", // Winston Churchill
+        "We shall fight on the beaches...", // Winston Churchill
+        "I have a dream...", // Martin Luther King Jr.
+        "Ask not what your country can do for you...", // John F. Kennedy
+        "Ich bin ein Berliner.", // John F. Kennedy
+        "That's one small step for man...", // Neil Armstrong
+        "An unexamined life is not worth living.", // Socrates
+        "Know thyself.", // Ancient Greek aphorism
+        "Eureka!", // Archimedes
+        "Carthago delenda est.", // Cato the Elder
+        "Alea iacta est.", // Julius Caesar
+        "Acta non verba.", // Latin proverb
+        "Cogito, ergo sum.", // René Descartes
+      ];
+
     const [blogCards, setBlogCards] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [dailyTitle, setDailyTitle] = useState('Look on my works, ye Mighty, and Despair!');
+    const [dailyTitle, setDailyTitle] = useState('');
     const [searchBarText, setSearchBarText] = useState('');
 
     // Update the title with all blog posts
@@ -57,6 +84,12 @@ const Homepage = () => {
             fetchData();
         }
     }, [searchBarText])
+
+    // TODO MAKE THE DAILY TITLE SERVER-SIDE DETERMINED
+    useEffect(() => {
+        const randomIndex = Math.floor(Math.random() * historicalExcerpts.length);
+        setDailyTitle(historicalExcerpts[randomIndex]);
+    }, [])
 
     const handleSearchInputChange = (event) => {
         setSearchBarText(event.target.value)

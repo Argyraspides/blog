@@ -31,6 +31,7 @@
 .blogcontent-markdown-content {
     width: 60%;
     height: 100%;
+    text-align: left;
 }
 
 .blogcontent-textcontent {

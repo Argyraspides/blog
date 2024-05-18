@@ -7,6 +7,7 @@ const PublishWritingButton = ({buttonClickFunction}) => {
 
     const handleButtonClick = () => {
        buttonClickFunction()
+       navigate('/')
     }
 
     return (
