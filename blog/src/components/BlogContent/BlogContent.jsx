@@ -1,6 +1,5 @@
 import './BlogContent.css'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm';
+import MDEditor from '@uiw/react-md-editor';
 import Titlebar from '../Titlebar/Titlebar';
 import { formatDate } from '../../utils/dateFormatter';
 import BackArrowButton from '../BackArrowButton/BackArrowButton';
@@ -32,11 +31,7 @@ const BlogContent = ({ _id, publicationDate, lastEditedDate, title, author, cove
 
                     <img src={coverImageSource} className="blogcontent-heading-image"></img>
                 </div>
-
-
-                <ReactMarkdown remarkPlugins={[remarkGfm]} className={"blogcontent-markdown-content"}>
-                    {textContent}
-                </ReactMarkdown>
+                <MDEditor.Markdown className="blogcontent-markdown-content" source={textContent} />
             </div>
         </>
     );

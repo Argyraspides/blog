@@ -29,9 +29,11 @@
 
 
 .blogcontent-markdown-content {
+    margin-top: 50px;
     width: 60%;
     height: 100%;
     text-align: left;
+    background-color: black;
 }
 
 .blogcontent-textcontent {
